@@ -72,9 +72,16 @@ func FetchAlerts(c *fiber.Ctx) error {
 	user := c.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
 	name := claims["email"].(string)
+	if c.Cookies("alerts") != "" {
+		return c.SendString(c.Cookies("alerts"))
+	}
 
 	alert := GetAllUserAlerts(name)
 	DetailsJSON, _ := json.MarshalIndent(alert, "", "\t")
+	cookie := new(fiber.Cookie)
+	cookie.Name = "alerts"
+	cookie.Value = string(DetailsJSON)
+	c.Cookie(cookie)
 	return c.SendString(strings.ReplaceAll(string(DetailsJSON), "\\u0026", "&"))
 
 }
