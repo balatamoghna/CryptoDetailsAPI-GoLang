@@ -19,7 +19,7 @@ go get gorm.io/driver/mysql
 go get github.com/streadway/amqp
 go get github.com/golang-jwt/jwt/v4
 ```
-Along with these libraries, Install ![RabbitMQ](https://www.rabbitmq.com/download.html) as well as ![MySQL](https://dev.mysql.com/downloads/installer/)
+Along with these libraries, Install [RabbitMQ](https://www.rabbitmq.com/download.html) as well as [MySQL](https://dev.mysql.com/downloads/installer/)
 
 Once everything is setup, 
 1.Create a MySQL database named "kryptodb"
