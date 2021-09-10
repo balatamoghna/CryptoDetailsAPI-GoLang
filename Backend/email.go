@@ -5,6 +5,7 @@ import (
 	"net/smtp"
 )
 
+//SendEmail function to send email
 func SendEmail(email string, symbol string, target float64) {
 
 	from := "balatamoghna.krypto@gmail.com"

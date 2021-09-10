@@ -65,6 +65,7 @@ func DeleteAlert(id int) {
 	DB.Delete(&m.Alerts{}, id)
 }
 
+//TriggerAlert function to change trigger status of an alert
 func TriggerAlert(id int) {
 	var alerts m.Alerts
 	DB.Find(&alerts)

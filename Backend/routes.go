@@ -10,6 +10,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
+//Login function to get JWT Token
 func Login(c *fiber.Ctx) error {
 	user := c.FormValue("user")
 	pass := c.FormValue("pass")
@@ -44,6 +45,7 @@ func restricted(c *fiber.Ctx) error {
 	return c.SendString("Welcome " + name)
 }
 
+//AlertCreate function to create alert
 func AlertCreate(c *fiber.Ctx) error {
 	user := c.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
@@ -55,6 +57,7 @@ func AlertCreate(c *fiber.Ctx) error {
 	return c.SendString("Alert created for user " + name + "\n" + strings.ReplaceAll(string(DetailsJSON), "\\u0026", "&"))
 }
 
+//AlertDelete function to delete alert
 func AlertDelete(c *fiber.Ctx) error {
 	user := c.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
@@ -64,6 +67,7 @@ func AlertDelete(c *fiber.Ctx) error {
 	return c.SendString("Alert deleted for user " + name)
 }
 
+//FetchAlerts function to fetch alerts from user
 func FetchAlerts(c *fiber.Ctx) error {
 	user := c.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
@@ -75,6 +79,7 @@ func FetchAlerts(c *fiber.Ctx) error {
 
 }
 
+//FetchTriggeredAlerts function to fetch only triggered alerts from user
 func FetchTriggeredAlerts(c *fiber.Ctx) error {
 	user := c.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
