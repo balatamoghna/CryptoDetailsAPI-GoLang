@@ -40,10 +40,6 @@ Run worker.go:
 
 Documentation
 ---------------
-godocs can be used to generate the documentation shown below (albeit with lesser descriptiveness)
-```godoc -http=:6060
-http://localhost:6060/pkg/trademarkia.com/animeAPI/ 
-```
 ### The project has three subfolders namely backend,model and worker
 * The backend consists of the email sender, object model relationship (along with driver to local MySQL database) and a route handler for ease of scalability.
 * The model contains the currency details and user alerts models used to represent the structure of the information. Also kept seperately to aid in ease of readablitly and scalability.
