@@ -62,13 +62,14 @@ func CreateAlert(email string, symbol string, target float64) m.Alerts {
 
 //DeleteAlert function to save Alert to database
 func DeleteAlert(id int) {
+
 	DB.Delete(&m.Alerts{}, id)
 }
 
 //TriggerAlert function to change trigger status of an alert
 func TriggerAlert(id int) {
 	var alerts m.Alerts
-	DB.Find(&alerts)
+	DB.Find(&alerts, id)
 	alerts.Triggered = "true"
 	DB.Save(&alerts)
 }
