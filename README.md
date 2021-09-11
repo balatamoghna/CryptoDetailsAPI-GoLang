@@ -62,7 +62,7 @@ Documentation
 Paginated response can have only the following parameters with values:
 * limit - int
 * page - int
-* sort - true OR false
+* sort - asc OR desc
 * triggered - true OR false
 
 ### Constants used:
