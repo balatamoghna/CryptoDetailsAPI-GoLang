@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cache"
 	"github.com/streadway/amqp"
 
 	jwtware "github.com/gofiber/jwt/v3"
@@ -105,6 +106,7 @@ func main() {
 
 	backend.InitialMigration()
 	app := fiber.New()
+	app.Use(cache.New())
 	go ticker()
 	routers(app)
 
