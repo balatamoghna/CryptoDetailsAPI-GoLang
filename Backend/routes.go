@@ -97,3 +97,29 @@ func FetchTriggeredAlerts(c *fiber.Ctx) error {
 	return c.SendString(strings.ReplaceAll(string(DetailsJSON), "\\u0026", "&"))
 
 }
+
+//FetchPaginatedAlerts function to get paginated list of alerts from user
+func FetchPaginatedAlerts(c *fiber.Ctx) error {
+	user := c.Locals("user").(*jwt.Token)
+	claims := user.Claims.(jwt.MapClaims)
+	name := claims["email"].(string)
+	limit, _ := strconv.Atoi(c.Query("limit"))
+	page, _ := strconv.Atoi(c.Query("page"))
+	sort := c.Query("sort")
+	if sort != "desc" {
+		sort = "asc"
+	}
+	triggered := "false"
+	if c.Query("triggered") == "true" {
+		triggered = "true"
+	}
+
+	alerts, total, page, lastPage := PaginatedAlerts(limit, sort, page, name, triggered)
+	return c.JSON(fiber.Map{
+		"total":     total,
+		"page":      page,
+		"last_page": lastPage,
+		"triggered": triggered,
+		"data":      alerts,
+	})
+}

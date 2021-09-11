@@ -28,7 +28,7 @@ func routers(app *fiber.App) {
 	app.Get("/alerts/create/:curr/:target", backend.AlertCreate)
 	app.Get("/alerts/delete/:id", backend.AlertDelete)
 	app.Get("/fetchall", backend.FetchAlerts)
-	app.Get("/fetchall/triggered", backend.FetchTriggeredAlerts)
+	app.Get("/paginatedfetch", backend.FetchPaginatedAlerts)
 
 }
 

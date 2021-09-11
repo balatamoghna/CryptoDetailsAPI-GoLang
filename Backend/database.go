@@ -2,6 +2,7 @@ package backend
 
 import (
 	"fmt"
+	"math"
 
 	m "CurrencyAlertApi/Model"
 
@@ -94,4 +95,34 @@ func GetCurrency(symbol string) m.Currencies {
 	DB.Find(&currency, "symbol = ?", symbol)
 	return currency
 
+}
+
+//PaginatedAlerts function gets the alert details in a paged format
+func PaginatedAlerts(limit int, sort string, page int, email string, triggered string) ([]m.Alerts, int, int, int) {
+	var alerts []m.Alerts
+
+	sql := "SELECT * FROM alerts"
+
+	if s := triggered; s != "" {
+		sql = fmt.Sprintf("%s WHERE triggered LIKE '%%%s%%' AND email like '%%%s%%' ", sql, s, email)
+	}
+
+	PerPage := 9
+	if limit > 0 {
+		PerPage = limit
+	}
+	if order := sort; sort != "" {
+		sql = fmt.Sprintf("%s ORDER BY id %s", sql, order)
+	}
+
+	Page := 1
+	if page > 1 {
+		Page = page
+	}
+	var total int64
+	DB.Raw(sql).Count(&total)
+	sql = fmt.Sprintf("%s LIMIT %d OFFSET %d", sql, PerPage, (Page-1)*PerPage)
+	DB.Raw(sql).Scan(&alerts)
+
+	return alerts, int(total), Page, int(math.Ceil(float64(total / int64(PerPage))))
 }
