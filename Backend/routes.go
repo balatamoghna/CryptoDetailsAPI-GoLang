@@ -115,6 +115,9 @@ func FetchPaginatedAlerts(c *fiber.Ctx) error {
 	}
 
 	alerts, total, page, lastPage := PaginatedAlerts(limit, sort, page, name, triggered)
+	if lastPage == 0 {
+		lastPage++
+	}
 	return c.JSON(fiber.Map{
 		"total":     total,
 		"page":      page,
