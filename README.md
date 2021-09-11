@@ -49,7 +49,8 @@ Documentation
 * AlertCreate - Function to create alert from user given parameters (email,target,currency aka symbol of the cryptocurrency from given API.example: btc,eth,etc)
 * AlertDelete - Function to delete alert by given ID 
 * FetchAlerts - Function to fetch all alerts from user
-* FetchTriggeredAlerts - Function to fetch only triggered alerts from user
+* FetchTriggeredAlerts - Function to fetch only triggered alerts from user (defunct, replaced by PaginatedAlerts. Function still exists in code.)
+* FetchPaginatedAlerts - Function to get paginated list of alerts from user
 
 
 ### Constants used:
@@ -92,8 +93,8 @@ Documentation
  ![create alert](https://user-images.githubusercontent.com/480968/132880709-82760a2f-7453-4b74-9ba6-4ecfeb4f74b5.png)\
  Fetch ALL alerts\
  ![fetch ALL alerts](https://user-images.githubusercontent.com/480968/132880814-a3f9385b-3963-45d5-8646-5f9d750f1fce.png)\
- Fetch triggered alerts\
- ![fetch triggered alerts](https://user-images.githubusercontent.com/480968/132880881-9e86c073-5a26-493c-8943-8bef367c264e.png)\
+ Fetch alerts in paginated way\
+ ![fetch alerts paginated](https://user-images.githubusercontent.com/480968/132934535-6fc68571-f330-4cde-9dce-1d6956dd14e3.png)
  Delete alert\
  ![delete alert](https://user-images.githubusercontent.com/480968/132881585-b5ac9792-ca6f-4426-8c30-414014cfde1f.png)\
  Alert triggered\
