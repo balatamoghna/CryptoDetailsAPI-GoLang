@@ -52,6 +52,18 @@ Documentation
 * FetchTriggeredAlerts - Function to fetch only triggered alerts from user (defunct, replaced by PaginatedAlerts. Function still exists in code.)
 * FetchPaginatedAlerts - Function to get paginated list of alerts from user
 
+### Endpoint Examples:
+* http://localhost:3000/login?user=b.balatamoghna@gmail.com&pass=Krypto - POST Method to login and get JWT Token.
+* http://localhost:3000/alerts/create/btc/45978 - GET Method to create alert for btc when reaching price 45978.(Both btc and price are parameters depending on symbol and current price target). Uses JWT Token acquired from login.
+* http://localhost:3000/alerts/delete/2 - GET Method to delete alert with given ID(i.e 2). Uses JWT Token acquired from login.
+* http://localhost:3000/fetchall - GET Method to fetch all alerts in a non paginated way for given users. Uses JWT Token acquired from login.
+* http://localhost:3000/paginatedfetch?limit=5&page=1&sort=asc&triggered=false - GET Method to fetch alerts in paginated way. In this link: limit=5, page=1,sort=true and triggered=false.
+
+Paginated response can have only the following parameters with values:
+* limit - int
+* page - int
+* sort - true OR false
+* triggered - true OR false
 
 ### Constants used:
 * DNS is a constant.\
