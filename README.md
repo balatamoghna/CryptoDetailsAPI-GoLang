@@ -111,7 +111,11 @@ Documentation
  ## Note
  The worker.go utilizes a function in the backend folder in email.go file. Although it is in the same folder as the backend for the main.go file, there are not shared functions between the main.go and worker.go where the only connection between them is the Rabbit MQ message broker thus ensuring independency.
  The backend can be a little cleaner, and worker can be in a seperate folder outside the main project in order to follow nomenclature and best practices.
- Basic implementation of caching done for FetchAll function, can also be implemented for FetchPaginated.
+ 
+ ## Bonus
+ Implementation of caching done for all functions.
+ Cache expiry: 1 minute
+ 
  
  Email: b.balatamoghna@gmail.com
  VIT Email: b.balatamoghna2018@vitstudent.ac.in
